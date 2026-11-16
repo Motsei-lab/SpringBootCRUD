@@ -4,6 +4,8 @@ import com.mecerintered.springbootprojecttwo.DTO.StudentRequest;
 import com.mecerintered.springbootprojecttwo.DTO.StudentResponse;
 import com.mecerintered.springbootprojecttwo.Entity.Students;
 import com.mecerintered.springbootprojecttwo.Repository.StudentRepository;
+import com.mecerintered.springbootprojecttwo.exceptions.DuplicateResourceException;
+import com.mecerintered.springbootprojecttwo.exceptions.ResourceNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
