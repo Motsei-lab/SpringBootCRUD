@@ -46,4 +46,14 @@ public class StudentController {
         studentService.deleteStudent(id);
         return ResponseEntity.noContent().build();
     }
+
+    @GetMapping("/search")
+    public ResponseEntity<StudentResponse> getStudentByEmail(@RequestParam String email){
+        return ResponseEntity.ok(studentService.getStudentByEmail(email));
+    }
+
+    @GetMapping("/search/last_name")
+    public ResponseEntity <List<StudentResponse>> getStudentBySurname(@RequestParam String lastName){
+        return ResponseEntity.ok(studentService.getStudentByLastName(lastName));
+    }
 }

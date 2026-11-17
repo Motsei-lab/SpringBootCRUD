@@ -75,11 +75,26 @@ public class StudentService {
         studentRepository.delete(student);
     }
 
+    //findStudentByEmail
+    @Transactional
+    public StudentResponse getStudentByEmail(String email) {
+        Students stu = studentRepository.findByEmail(email).orElseThrow(() -> new ResourceNotFoundException(
+                "Student not found with email: " + email));
+
+        return mapToResponse(stu);
+    }
+    //find Student By Surname
+    @Transactional(readOnly = true)
+    public List<StudentResponse> getStudentByLastName(String lastName){
+        return studentRepository.findByLastName(lastName).stream().map(this::mapToResponse).toList();
+    }
+
+
     private Students findStudentOrThrow(Long id) {
         return studentRepository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Student with ID: " + id + " was not found"));
     }
 
-    private StudentResponse mapToResponse(Students student){
+    private StudentResponse mapToResponse(Students student) {
         return new StudentResponse(
                 student.getId(),
                 student.getFirstName(),
